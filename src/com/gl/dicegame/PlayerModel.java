@@ -2,14 +2,13 @@ package com.gl.dicegame;
 
 public class PlayerModel {
 
-	public int number;
-	public int rank;
-	public int points;
-	public boolean isGameComplete;
-	public boolean isPreviousDiceRoll;
-	public boolean isPenalized;
+	private int number;
+	private int rank;
+	private int points;
+	private boolean isGameComplete;
+	private boolean isPreviousDiceRoll;
+	private boolean isPenalized;
 
-	// public static class PlayerModelExtensions {
 	public void updatePoints(PlayerModel player, int diceVal) {
 		player.points += diceVal;
 	}

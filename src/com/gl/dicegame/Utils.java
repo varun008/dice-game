@@ -52,14 +52,13 @@ public class Utils {
 		return arr;
 	}
 
-	public static int[] generateOrder(int totalPlayers) throws IllegalArgumentException{
+	public static int[] generateOrder(int totalPlayers) throws IllegalArgumentException {
 		if (totalPlayers <= 0) {
 			throw new IllegalArgumentException("n cannot be less than or equal to zero");
 		}
 		int[] orderarray = new int[totalPlayers];
 		boolean[] orderedArray = new boolean[totalPlayers];
 		int i = 0;
-		int counter = 0;
 		System.out.println("Player Order: ");
 		while (i < totalPlayers) {
 			int playerNumber = random.nextInt((totalPlayers - 1) + 1) + 1;
@@ -69,7 +68,6 @@ public class Utils {
 				i++;
 				System.out.println("Player Number :" + playerNumber);
 			}
-			counter++;
 		}
 		System.out.println();
 		return orderarray;

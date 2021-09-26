@@ -15,16 +15,16 @@ public class GameLogic {
 	}
 
 	public static boolean checkIfPlayerReachedTarget(GameModel game, PlayerModel player) {
-		return player.points >= game.targetPoints;
+		return player.getPoints() >= game.getTargetPoints();
 	}
 
 	static void updatePlayerRankArrayAfterDiceRoll(GameModel game, PlayerModel currentPlayer) {
 		while (true) {
-			if (currentPlayer.rank == 1) {
+			if (currentPlayer.getRank() == 1) {
 				break;
 			}
-			PlayerModel highRankPlayer = game.getPlayerByRank(game, currentPlayer.rank - 1);
-			if (highRankPlayer.points < currentPlayer.points) {
+			PlayerModel highRankPlayer = game.getPlayerByRank(game, currentPlayer.getRank() - 1);
+			if (highRankPlayer.getPoints() < currentPlayer.getPoints()) {
 				game.swapPositions(game, currentPlayer, highRankPlayer);
 			} else {
 				break;
@@ -36,9 +36,9 @@ public class GameLogic {
 		System.out.println();
 		System.out.println("Player: ");
 		System.out.println(" |  Player | " + "Points" + " | " + "Rank" + " | ");
-		for (PlayerModel player : game.players) {
-			System.out
-					.println(" |       " + player.number + " |     " + player.points + "  |   " + player.rank + "  | ");
+		for (PlayerModel player : game.getPlayers()) {
+			System.out.println(" |       " + player.getNumber() + " |     " + player.getPoints() + "  |   "
+					+ player.getRank() + "  | ");
 		}
 	}
 
@@ -56,13 +56,14 @@ public class GameLogic {
 		int index = 0;
 		while (!game.isComplete(game)) {
 			PlayerModel currentplayer = game.getCurrentPlayer(game, index);
-			if (currentplayer.isGameComplete || currentplayer.isPenalized) {
-				index = getNextPlayerByIndex(index, game.playerCount);
-				currentplayer.isPenalized = false;
+			if (currentplayer.isGameComplete() || currentplayer.isPenalized()) {
+				index = getNextPlayerByIndex(index, game.getPlayerCount());
+				currentplayer.setPenalized(false);
 				continue;
 			}
 			System.out.println("---------------------------------------------------------");
-			System.out.println("Player - " + currentplayer.number + " Its your Turn now(Press Any key to Roll Dice)");
+			System.out.println(
+					"Player - " + currentplayer.getNumber() + " Its your Turn now(Press Any key to Roll Dice)");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			try {
 				br.readLine();
@@ -75,7 +76,7 @@ public class GameLogic {
 			updatePlayerRankArrayAfterDiceRoll(game, currentplayer);
 			printRankTable(game);
 			if (currentplayer.shouldPenalize(currentplayer, diceval)) {
-				currentplayer.isPenalized = true;
+				currentplayer.setPenalized(true);
 				System.out.println("You are penalized for rolling 1 twice consecutively");
 			}
 			currentplayer.updatePreviousRoll(currentplayer, diceval);
@@ -85,7 +86,7 @@ public class GameLogic {
 				System.out.println("Congratuations!! You have completed the game.");
 			}
 			if (!giveAnotherChance(diceval)) {
-				index = getNextPlayerByIndex(index, game.playerCount);
+				index = getNextPlayerByIndex(index, game.getPlayerCount());
 			}
 		}
 		System.out.println("Game Over");

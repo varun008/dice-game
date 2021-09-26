@@ -2,12 +2,12 @@ package com.gl.dicegame;
 
 public class GameModel {
 
-	int[] order;
-	int targetPoints;
-	int[] playerNumberByRank;
-	int playerCount;
-	int remainingPlayers;
-	public PlayerModel[] players;
+	private int[] order;
+	private int targetPoints;
+	private int[] playerNumberByRank;
+	private int playerCount;
+	private int remainingPlayers;
+	private PlayerModel[] players;
 
 	GameModel() {
 	}
@@ -45,13 +45,14 @@ public class GameModel {
 	}
 
 	public void swapPositions(GameModel game, PlayerModel player1, PlayerModel player2) {
-		game.playerNumberByRank[player1.rank - 1] = player2.number;
-		game.playerNumberByRank[player2.rank - 1] = player1.number;
+		game.playerNumberByRank[player1.getRank() - 1] = player2.getNumber();
+		game.playerNumberByRank[player2.getRank() - 1] = player1.getNumber();
 
-		int player1Rank = player1.rank;
-		player1.rank = player2.rank;
-		player2.rank = player1Rank;
+		int player1Rank = player1.getRank();
+		player1.setRank(player2.getRank());
+		player2.setRank(player1Rank);
 	}
+
 	// }
 
 	public int[] getOrder() {

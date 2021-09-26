@@ -14,24 +14,24 @@ public class CheckIfPlayerReachedTargetTest {
 	public void ReturnTrueIfTargetReached() {
 		GameModel game = new GameModel(2, 10);
 		game.initializePlayers(game);
-		game.players[1].updatePoints(game.players[1], 10);
-		assertTrue(GameLogic.checkIfPlayerReachedTarget(game, game.players[1]));
+		game.getPlayers()[1].updatePoints(game.getPlayers()[1], 10);
+		assertTrue(GameLogic.checkIfPlayerReachedTarget(game, game.getPlayers()[1]));
 	}
 
 	@Test
 	public void ReturnTrueIfTargetCrossed() {
 		GameModel game = new GameModel(2, 10);
 		game.initializePlayers(game);
-		game.players[1].updatePoints(game.players[1], 12);
-		assertTrue(GameLogic.checkIfPlayerReachedTarget(game, game.players[1]));
+		game.getPlayers()[1].updatePoints(game.getPlayers()[1], 12);
+		assertTrue(GameLogic.checkIfPlayerReachedTarget(game, game.getPlayers()[1]));
 	}
 
 	@Test
 	public void ReturnFalseIfTargetNotReached() {
 		GameModel game = new GameModel(2, 10);
 		game.initializePlayers(game);
-		game.players[1].updatePoints(game.players[1], 2);
-		assertFalse(GameLogic.checkIfPlayerReachedTarget(game, game.players[1]));
+		game.getPlayers()[1].updatePoints(game.getPlayers()[1], 2);
+		assertFalse(GameLogic.checkIfPlayerReachedTarget(game, game.getPlayers()[1]));
 	}
 
 }
