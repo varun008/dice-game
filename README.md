@@ -34,5 +34,5 @@ The commands line interface will guide your throught the game and displayed the 
 
 ## Run unit tests
 
-To run the junit tests run the project as Junit Test by right clicking on project and choosing Run As->Junit Test. 
+To run the junit tests run the project as Junit Test by right clicking on project and choosing Run As->Junit Test by choosing com.gl.dicegame.tests.TestRunner.java as the class. 
 Note: Make sure Junit 5 Library is added to the build path of the project.
